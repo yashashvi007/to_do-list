@@ -3,12 +3,14 @@ let inputValue = document.querySelector('.input');
 const add = document.querySelector('.add');
 
 if(window.localStorage.getItem("todos") === undefined){
-     let todos = [];
+    let todos = [];
      window.localStorage.setItem("todos", JSON.stringify(todos));
 }
+else {
+    let todosx = window.localStorage.getItem("todos");
+    let todos = JSON.parse(todosx);
+}
 
-let todosx = window.localStorage.getItem("todos");
-let todos = JSON.parse(todosx);
 
 
 class item{
