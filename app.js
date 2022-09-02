@@ -7,8 +7,8 @@ if(window.localStorage.getItem("todos") === undefined){
      window.localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-let todosEX = window.localStorage.getItem("todos");
-let todos = JSON.parse(todosEX);
+let todosx = window.localStorage.getItem("todos");
+let todos = JSON.parse(todosx);
 
 
 class item{
@@ -66,7 +66,7 @@ class item{
 add.addEventListener('click', check);
 window.addEventListener('keydown', (e) => {
    
-	if(e.which == 13){
+	if(e.key=== "Enter"){
 		check();
 	}
 })
