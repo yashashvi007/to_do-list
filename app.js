@@ -73,8 +73,8 @@ window.addEventListener('keydown', (e) => {
 })
 
 function check(){
-    const index = todos.find(el => el === inputValue.value)
-    if(index){
+    const  exists = todos.find(el => el === inputValue.value)
+    if(exists){
         alert("Item already Exists")
         return 
     }
