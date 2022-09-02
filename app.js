@@ -2,15 +2,13 @@ const container = document.querySelector('.container');
 let inputValue = document.querySelector('.input');
 const add = document.querySelector('.add');
 
-if(window.localStorage.getItem("todos") === undefined){
-    let todos = [];
+if(window.localStorage.getItem("todos") == undefined){
+     let todos = [];
      window.localStorage.setItem("todos", JSON.stringify(todos));
 }
-else {
-    let todosx = window.localStorage.getItem("todos");
-    let todos = JSON.parse(todosx);
-}
 
+let todosEX = window.localStorage.getItem("todos");
+let todos = JSON.parse(todosEX);
 
 
 class item{
@@ -30,7 +28,7 @@ class item{
     	let edit = document.createElement('button');
     	edit.classList.add('edit');
     	edit.innerHTML = "EDIT";
-    	edit.addEventListener('click', () => this.edit(input, name));
+    	edit.addEventListener('click', () => this.edit(input, name , edit));
 
     	let remove = document.createElement('button');
     	remove.classList.add('remove');
@@ -45,12 +43,14 @@ class item{
 
     }
 
-    edit(input, name){
-        if(input.disabled === true){
+    edit(input, name , edit){
+        if(input.disabled == true){
            input.disabled = !input.disabled;
+           edit.innerHTML = "SAVE"
         }
     	else{
             input.disabled = !input.disabled;
+            edit.innerHTML = "EDIT"
             let indexof = todos.indexOf(name);
             todos[indexof] = input.value;
             window.localStorage.setItem("todos", JSON.stringify(todos));
@@ -67,14 +67,18 @@ class item{
 
 add.addEventListener('click', check);
 window.addEventListener('keydown', (e) => {
-   
-	if(e.key=== "Enter"){
+	if(e.key === "Enter"){
 		check();
 	}
 })
 
 function check(){
-	if(inputValue.value != ""){
+    const index = todos.find(el => el === inputValue.value)
+    if(index){
+        alert("Item already Exists")
+        return 
+    }
+	if(inputValue.value !== "" ){
 		new item(inputValue.value);
         todos.push(inputValue.value);
         window.localStorage.setItem("todos", JSON.stringify(todos));
@@ -86,4 +90,3 @@ function check(){
 for (let v = 0 ; v < todos.length ; v++){
     new item(todos[v]);
 }
-
