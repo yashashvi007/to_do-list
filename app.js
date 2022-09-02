@@ -2,7 +2,7 @@ const container = document.querySelector('.container');
 let inputValue = document.querySelector('.input');
 const add = document.querySelector('.add');
 
-if(window.localStorage.getItem("todos") == undefined){
+if(window.localStorage.getItem("todos") === undefined){
      let todos = [];
      window.localStorage.setItem("todos", JSON.stringify(todos));
 }
@@ -85,5 +85,3 @@ for (let v = 0 ; v < todos.length ; v++){
     new item(todos[v]);
 }
 
-
-new item("xyz");
